@@ -2,12 +2,12 @@
 title: Home
 ---
 
-# Up next
+<h1>Up next</h1>
 
 <%
-    (upcoming_talks(@items)).sort_by do |item|
+    item = (upcoming_talks(@items)).sort_by do |item|
         item.attributes[:date].to_datetime
-    end.last(1) do |item|
+    end.first
 %>
     <div class="frontpage_item frontpage_talk">
         <h2>
@@ -38,9 +38,8 @@ title: Home
             Tags: <%= tags_for(item, separator: ", ") %>
         </div>
     </div>
-<% end %>
 
-# History
+<h1>History</h1>
 
 <%
     (only_blogs(@items) + past_talks(@items)).sort_by do |item|
